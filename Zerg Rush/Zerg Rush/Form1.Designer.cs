@@ -29,37 +29,50 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.defaultalienPicture = new System.Windows.Forms.PictureBox();
             this.runTicker = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.defaultalienPicture = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.defaultalienPicture)).BeginInit();
             this.SuspendLayout();
             // 
+            // runTicker
+            // 
+            this.runTicker.Interval = 10;
+            this.runTicker.Tick += new System.EventHandler(this.runTicker_Tick);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(299, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 1;
+            // 
             // defaultalienPicture
             // 
-            this.defaultalienPicture.Image = global::Zerg_Rush.Properties.Resources.f3b38e0625012600f8c71693e75443dc526c1;
-            this.defaultalienPicture.Location = new System.Drawing.Point(62, 30);
+            this.defaultalienPicture.BackColor = System.Drawing.Color.Transparent;
+            this.defaultalienPicture.Image = global::Zerg_Rush.Properties.Resources.space_invader;
+            this.defaultalienPicture.Location = new System.Drawing.Point(125, 151);
             this.defaultalienPicture.Name = "defaultalienPicture";
-            this.defaultalienPicture.Size = new System.Drawing.Size(30, 25);
+            this.defaultalienPicture.Size = new System.Drawing.Size(36, 34);
             this.defaultalienPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.defaultalienPicture.TabIndex = 0;
             this.defaultalienPicture.TabStop = false;
-            this.defaultalienPicture.Visible = false;
             this.defaultalienPicture.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // runTicker
-            // 
-            this.runTicker.Tick += new System.EventHandler(this.runTicker_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(924, 481);
             this.Controls.Add(this.defaultalienPicture);
+            this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyUp);
             ((System.ComponentModel.ISupportInitialize)(this.defaultalienPicture)).EndInit();
             this.ResumeLayout(false);
 
@@ -69,6 +82,7 @@
 
         private System.Windows.Forms.PictureBox defaultalienPicture;
         private System.Windows.Forms.Timer runTicker;
+        private System.Windows.Forms.Label label1;
     }
 }
 

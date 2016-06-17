@@ -7,3 +7,6 @@ c:\users\liam multhaup\documents\visual studio 2015\Projects\Zerg Rush\Zerg Rush
 c:\users\liam multhaup\documents\visual studio 2015\Projects\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.csproj.GenerateResource.Cache
 c:\users\liam multhaup\documents\visual studio 2015\Projects\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.exe
 c:\users\liam multhaup\documents\visual studio 2015\Projects\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.pdb
+C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\bin\Debug\Zerg Rush.exe.config
+C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.exe
+C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.pdb
