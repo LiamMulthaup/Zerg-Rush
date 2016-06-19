@@ -35,7 +35,6 @@ namespace Zerg_Rush
         private void Form1_Load(object sender, EventArgs e)
         {
             Random rand = new Random();
-            gamephase = 1;
             createAlienWaitTimers.Add(500 + rand.Next(rand.Next(80)));
             createAlienWaitTimers.Add(600 + rand.Next(rand.Next(80)));
             createAlienWaitTimers.Add(700 + rand.Next(rand.Next(80)));
@@ -185,6 +184,18 @@ namespace Zerg_Rush
             //int newWidth = Convert.ToInt32(Math.Abs(Math.Cos(angle) * y * 2));
             //int newHeight = Convert.ToInt32(Math.Abs(Math.Cos(90 - angle) * y * 2));
 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gamephase = 1;
+            button1.Visible = false;
+            this.Focus();
         }
     }
 }
