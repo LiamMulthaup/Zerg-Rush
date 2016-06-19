@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.runTicker = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.spaceship = new System.Windows.Forms.PictureBox();
             this.defaultalienPicture = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spaceship)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.defaultalienPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,20 +48,21 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(299, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(182, 23);
             this.label1.TabIndex = 1;
             // 
-            // pictureBox1
+            // spaceship
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Zerg_Rush.Properties.Resources.spaceship;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(338, 135);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 34);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.spaceship.BackColor = System.Drawing.Color.Transparent;
+            this.spaceship.Image = global::Zerg_Rush.Properties.Resources.spaceship;
+            this.spaceship.InitialImage = null;
+            this.spaceship.Location = new System.Drawing.Point(253, 110);
+            this.spaceship.Name = "spaceship";
+            this.spaceship.Size = new System.Drawing.Size(41, 34);
+            this.spaceship.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.spaceship.TabIndex = 2;
+            this.spaceship.TabStop = false;
+            this.spaceship.Click += new System.EventHandler(this.spaceship_Click);
             // 
             // defaultalienPicture
             // 
@@ -93,7 +94,7 @@
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(924, 481);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.spaceship);
             this.Controls.Add(this.defaultalienPicture);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -101,7 +102,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spaceship)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.defaultalienPicture)).EndInit();
             this.ResumeLayout(false);
 
@@ -112,7 +113,7 @@
         private System.Windows.Forms.PictureBox defaultalienPicture;
         private System.Windows.Forms.Timer runTicker;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox spaceship;
         private System.Windows.Forms.Button button1;
     }
 }

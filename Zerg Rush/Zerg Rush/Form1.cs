@@ -51,16 +51,17 @@ namespace Zerg_Rush
         {
             if (rightDown == true)
             {
-                rotateRight(defaultalienPicture, Properties.Resources.space_invader, position);
                 position++;
+                rotate(defaultalienPicture, Properties.Resources.space_invader, position);
             }
             if (leftDown == true)
             {
-                rotateLeft(defaultalienPicture, Properties.Resources.space_invader, position);
                 position--;
+                rotate(defaultalienPicture, Properties.Resources.space_invader, position);
             }
             if (gamephase == 1)
             {
+                PointControlTowardsCursor(spaceship, Properties.Resources.spaceship);
                 for (int x = 0; x < alienList.Count; x++)
                 {
 
@@ -76,6 +77,15 @@ namespace Zerg_Rush
                 }
             }
 
+        }
+
+        private void PointControlTowardsCursor(PictureBox pcb, Bitmap btm)
+        {
+            double ydistance = pcb.Location.Y - Cursor.Position.Y;
+            double xdistance = Cursor.Position.X - pcb.Location.X;
+            int newControlPosition = - Convert.ToInt32(Math.Atan2(ydistance, xdistance) * 180 / Math.PI);
+            label1.Text = newControlPosition.ToString() + " " + Cursor.Position.X.ToString() + " " + Cursor.Position.Y.ToString() + " " + pcb.Location.X.ToString() + " " + pcb.Location.Y.ToString();
+            rotate(pcb, btm, newControlPosition + 90);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -147,14 +157,9 @@ namespace Zerg_Rush
             }
         }
 
-        private void rotateRight(PictureBox pbx, Bitmap btp, float angle)
+        private void rotate(PictureBox pbx, Bitmap btp, float angle)
         {
-            pbx.Image = RotateImage(btp, new PointF(pbx.Image.Width / 2, pbx.Image.Height / 2), angle + 1F, pbx);
-        }
-
-        private void rotateLeft(PictureBox pbx, Bitmap btp, float angle)
-        {
-            pbx.Image = RotateImage(btp, new PointF(pbx.Image.Width / 2, pbx.Image.Height / 2), angle - 1F, pbx);
+            pbx.Image = RotateImage(btp, new PointF(pbx.Image.Width / 2, pbx.Image.Height / 2), angle, pbx);
         }
 
         public static Bitmap RotateImage(Image image, PointF offset, float angle, PictureBox pbx)
@@ -196,6 +201,11 @@ namespace Zerg_Rush
             gamephase = 1;
             button1.Visible = false;
             this.Focus();
+        }
+
+        private void spaceship_Click(object sender, EventArgs e)
+        {
+            label1.Text = Cursor.Position.X.ToString() + " " + Cursor.Position.Y.ToString();
         }
     }
 }
