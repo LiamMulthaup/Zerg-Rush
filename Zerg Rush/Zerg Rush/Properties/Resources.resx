@@ -118,25 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="spaceship1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spaceship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="spaceship2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spaceship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="f3b38e0625012600f8c71693e75443dc526c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\f3b38e0625012600f8c71693e75443dc526c.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="f3b38e0625012600f8c71693e75443dc526c1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\f3b38e0625012600f8c71693e75443dc526c1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="space-invader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\space-invader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="f3b38e0625012600f8c71693e75443dc526c" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\f3b38e0625012600f8c71693e75443dc526c.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spaceship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="space-invader1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\space-invader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

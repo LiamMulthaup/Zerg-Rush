@@ -10,9 +10,3 @@ c:\users\liam multhaup\documents\visual studio 2015\Projects\Zerg Rush\Zerg Rush
 C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\bin\Debug\Zerg Rush.exe.config
 C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.exe
 C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.pdb
-C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\bin\Debug\Zerg Rush.exe
-C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\bin\Debug\Zerg Rush.pdb
-C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.csprojResolveAssemblyReference.cache
-C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg_Rush.Form1.resources
-C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg_Rush.Properties.Resources.resources
-C:\Users\Liam Multhaup\Documents\GitHub\Zerg-Rush\Zerg Rush\Zerg Rush\obj\Debug\Zerg Rush.csproj.GenerateResource.Cache
