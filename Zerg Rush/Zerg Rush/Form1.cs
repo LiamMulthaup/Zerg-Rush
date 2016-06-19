@@ -14,13 +14,12 @@ namespace Zerg_Rush
     {
         struct aliens
         {
-            public int position;
+            public int defaultposition;
             public int health;
         }
         List<aliens> alienList = new List<aliens>();
         public Form1()
         {
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
             runTicker.Start();
         }
@@ -28,14 +27,14 @@ namespace Zerg_Rush
         List<PictureBox> alienPictureList = new List<PictureBox>();
         int gamephase = 0;
         List<int> createAlienWaitTimers = new List<int>();
-        int position = 0;
+        int defaultposition = 0;
 
         bool rightDown = false;
         bool leftDown = false;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Random rand = new Random();
-            gamephase = 1;
             createAlienWaitTimers.Add(500 + rand.Next(rand.Next(80)));
             createAlienWaitTimers.Add(600 + rand.Next(rand.Next(80)));
             createAlienWaitTimers.Add(700 + rand.Next(rand.Next(80)));
@@ -52,13 +51,13 @@ namespace Zerg_Rush
         {
             if (rightDown == true)
             {
-                rotateRight(defaultalienPicture, Properties.Resources.space_invader, position);
-                position++;
+                rotateRight(defaultalienPicture, Properties.Resources.space_invader, defaultposition);
+                defaultposition++;
             }
             if (leftDown == true)
             {
-                rotateLeft(defaultalienPicture, Properties.Resources.space_invader, position);
-                position--;
+                rotateLeft(defaultalienPicture, Properties.Resources.space_invader, defaultposition);
+                defaultposition--;
             }
             if (gamephase == 1)
             {
@@ -95,7 +94,7 @@ namespace Zerg_Rush
             Random rand = new Random();
             aliens alien = new aliens();
             alien.health = rand.Next(2 + rand.Next(3));
-            alien.position = 0;
+            alien.defaultposition = 0;
             alienList.Add(alien);
             PictureBox alienPicture = new PictureBox();
             alienPicture.Click += pictureBox1_Click;
@@ -104,7 +103,15 @@ namespace Zerg_Rush
             alienPicture.SizeMode = PictureBoxSizeMode.Zoom;
             alienPictureList.Add(alienPicture);
             Controls.Add(alienPictureList[alienPictureList.Count - 1]);
-            alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(940), rand.Next(20));
+            int choose = rand.Next(4);
+            if (choose == 0)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(this.Size.Width), rand.Next(20)); }
+            if (choose == 1)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(this.Size.Width), this.Size.Height - rand.Next(20)); }
+            if (choose == 2)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(20), rand.Next(this.Size.Height)); }
+            if (choose == 3)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(this.Size.Width - rand.Next(20), rand.Next(this.Size.Height)); }
         }
         private void killAlien(object sender)
         {
@@ -149,7 +156,7 @@ namespace Zerg_Rush
             pbx.Image = RotateImage(btp, new PointF(pbx.Image.Width / 2, pbx.Image.Height / 2), angle - 1F, pbx);
         }
 
-        public static Bitmap RotateImage(Image image, PointF offset, float angle, PictureBox pbx)
+        private static Bitmap RotateImage(Image image, PointF offset, float angle, PictureBox pbx)
         {
             //create a new empty bitmap to hold rotated image
             Bitmap rotatedBmp = new Bitmap(image.Width, image.Height);
@@ -176,6 +183,12 @@ namespace Zerg_Rush
             //int newWidth = Convert.ToInt32(Math.Abs(Math.Cos(angle) * y * 2));
             //int newHeight = Convert.ToInt32(Math.Abs(Math.Cos(90 - angle) * y * 2));
 
+        }
+
+        private void playButton_Click(object sender, EventArgs e)
+        {
+            gamephase = 1;
+            playButton.Visible = false;
         }
     }
 }
