@@ -104,7 +104,16 @@ namespace Zerg_Rush
             alienPicture.SizeMode = PictureBoxSizeMode.Zoom;
             alienPictureList.Add(alienPicture);
             Controls.Add(alienPictureList[alienPictureList.Count - 1]);
-            alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(940), rand.Next(20));
+            int choice = rand.Next(4);
+            if (choice == 0)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(this.Size.Width), rand.Next(5)); }
+            if (choice == 1)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(this.Size.Width), this.Size.Height - rand.Next(5)); }
+            if (choice == 2)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(rand.Next(5), rand.Next(this.Size.Height)); }
+            if (choice == 3)
+            { alienPictureList[alienPictureList.Count - 1].Location = new Point(this.Size.Width - rand.Next(5), rand.Next(this.Size.Height)); }
+
         }
         private void killAlien(object sender)
         {
