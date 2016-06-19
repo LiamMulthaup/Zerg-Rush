@@ -52,13 +52,15 @@ namespace Zerg_Rush
         {
             if (rightDown == true)
             {
-                rotateRight(defaultalienPicture, Properties.Resources.space_invader, position);
-                position++;
+                MessageBox.Show("made it to the right down");
+                rotate(defaultalienPicture, Properties.Resources.space_invader, position);
+                position += 3;
             }
             if (leftDown == true)
             {
-                rotateLeft(defaultalienPicture, Properties.Resources.space_invader, position);
-                position--;
+                MessageBox.Show("made it to the left down");
+                rotate(defaultalienPicture, Properties.Resources.space_invader, position);
+                position -= 3;
             }
             if (gamephase == 1)
             {
@@ -148,18 +150,15 @@ namespace Zerg_Rush
             }
         }
 
-        private void rotateRight(PictureBox pbx, Bitmap btp, float angle)
+        private void rotate(PictureBox pbx, Bitmap btp, float angle)
         {
-            pbx.Image = RotateImage(btp, new PointF(pbx.Image.Width / 2, pbx.Image.Height / 2), angle + 1F, pbx);
-        }
-
-        private void rotateLeft(PictureBox pbx, Bitmap btp, float angle)
-        {
-            pbx.Image = RotateImage(btp, new PointF(pbx.Image.Width / 2, pbx.Image.Height / 2), angle - 1F, pbx);
+            MessageBox.Show("made it to the rotate method");
+            pbx.Image = RotateImage(btp, new PointF(pbx.Image.Width / 2, pbx.Image.Height / 2), angle, pbx);
         }
 
         public static Bitmap RotateImage(Image image, PointF offset, float angle, PictureBox pbx)
         {
+            MessageBox.Show("made it to the rotate image");
             //create a new empty bitmap to hold rotated image
             Bitmap rotatedBmp = new Bitmap(image.Width, image.Height);
             rotatedBmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
@@ -185,6 +184,10 @@ namespace Zerg_Rush
             //int newWidth = Convert.ToInt32(Math.Abs(Math.Cos(angle) * y * 2));
             //int newHeight = Convert.ToInt32(Math.Abs(Math.Cos(90 - angle) * y * 2));
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
         }
     }
 }
