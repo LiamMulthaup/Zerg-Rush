@@ -83,6 +83,26 @@ namespace Zerg_Rush.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Laser {
+            get {
+                object obj = ResourceManager.GetObject("Laser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Laser2 {
+            get {
+                object obj = ResourceManager.GetObject("Laser2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap space_invader {
             get {
                 object obj = ResourceManager.GetObject("space-invader", resourceCulture);

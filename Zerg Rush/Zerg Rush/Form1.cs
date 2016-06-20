@@ -17,6 +17,16 @@ namespace Zerg_Rush
             public int position;
             public int health;
         }
+        struct players
+        {
+            public int position;
+            public int health;
+        }
+        struct lasers
+        {
+            public int position;
+            public int damage;
+        }
         List<aliens> alienList = new List<aliens>();
         public Form1()
         {
@@ -24,14 +34,20 @@ namespace Zerg_Rush
             InitializeComponent();
             runTicker.Start();
         }
-
+        List<lasers> laserList = new List<lasers>();
+        List<PictureBox> laserPictureList = new List<PictureBox>();
         List<PictureBox> alienPictureList = new List<PictureBox>();
+        List<players> playersList = new List<players>();
         int gamephase = 0;
         List<int> createAlienWaitTimers = new List<int>();
         int position = 0;
 
         bool rightDown = false;
         bool leftDown = false;
+        bool mousePress = false;
+
+        int waitingToMove = 0;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Random rand = new Random();
@@ -61,10 +77,40 @@ namespace Zerg_Rush
             }
             if (gamephase == 1)
             {
-                PointControlTowardsCursor(spaceship, Properties.Resources.spaceship);
+                for (int x = 0; x < playersList.Count; x++)
+                {
+                    players player = playersList[x];
+                    player.position = PointControlTowardsCursor(spaceship, Properties.Resources.spaceship);
+                    playersList[x] = player;
+                    if (waitingToMove < 1)
+                    {
+                        MoveTowardsCursor(spaceship, player.position);
+                        waitingToMove = 3;
+                    }
+                }
+                waitingToMove--;
+                
+                for (int x = 0; x < laserList.Count; x++)
+                {
+                    MoveTowardsPosition(laserList[x].position, 5, laserPictureList[x]);
+                    if (laserPictureList[x].Location.Y > this.Height || laserPictureList[x].Location.Y < -40 || laserPictureList[x].Location.X > this.Width || laserPictureList[x].Location.X < -40)
+                    {
+                        laserList.RemoveAt(x);
+                        Controls.Remove(laserPictureList[x]);
+                        laserPictureList[x].Dispose();
+                        laserPictureList.RemoveAt(x);
+                    }
+                }
+
                 for (int x = 0; x < alienList.Count; x++)
                 {
-
+                    for (int y = 0; x < laserList.Count; x++)
+                    {
+                        if ((laserPictureList[y].Location.X > (alienPictureList[x].Location.X + alienPictureList[x].Width - 5) && laserPictureList[y].Location.X < (alienPictureList[x].Location.X + 5)) && (laserPictureList[y].Location.Y > (alienPictureList[x].Location.Y + alienPictureList[x].Height - 5) && laserPictureList[y].Location.Y < (alienPictureList[x].Location.Y + 5)))
+                        {
+                            MessageBox.Show("Gottem");
+                        }
+                    }
                 }
                 for (int x = createAlienWaitTimers.Count - 1; x >= 0; x--)
                 {
@@ -79,13 +125,33 @@ namespace Zerg_Rush
 
         }
 
-        private void PointControlTowardsCursor(PictureBox pcb, Bitmap btm)
+        private int PointControlTowardsCursor(PictureBox pcb, Bitmap btm)
         {
-            double ydistance = pcb.Location.Y - Cursor.Position.Y;
-            double xdistance = Cursor.Position.X - pcb.Location.X;
+            double ydistance = (pcb.Location.Y + (pcb.Height / 2)) - (Cursor.Position.Y - this.Location.Y - 30);
+            double xdistance = (Cursor.Position.X - this.Location.X - 8) - (pcb.Location.X + (pcb.Width / 2));
             int newControlPosition = - Convert.ToInt32(Math.Atan2(ydistance, xdistance) * 180 / Math.PI);
-            label1.Text = newControlPosition.ToString() + " " + Cursor.Position.X.ToString() + " " + Cursor.Position.Y.ToString() + " " + pcb.Location.X.ToString() + " " + pcb.Location.Y.ToString();
+            label1.Text = newControlPosition.ToString() + " " + (Cursor.Position.X - this.Location.X).ToString() + " " + (Cursor.Position.Y - this.Location.Y).ToString() + " " + (pcb.Location.X + (pcb.Width / 2)).ToString() + " " + (pcb.Location.Y + (pcb.Height / 2)).ToString() + " " + pcb.Location.X + " "  + pcb.Location.Y;
             rotate(pcb, btm, newControlPosition + 90);
+            return newControlPosition;
+        }
+
+        private void MoveTowardsCursor(PictureBox pcb, int controlPosition)
+        {
+            int distanceToTravel = 3;
+            double ydistance = (pcb.Location.Y + (pcb.Height / 2)) - (Cursor.Position.Y - this.Location.Y - 30);
+            double xdistance = (Cursor.Position.X - this.Location.X - 8) - (pcb.Location.X + (pcb.Width / 2));
+            int distanceAway = Convert.ToInt32(Math.Sqrt((ydistance * ydistance) + (xdistance * xdistance)));
+            if (distanceAway > 40)
+            {
+                MoveTowardsPosition(controlPosition, distanceToTravel, pcb);
+            }
+        }
+
+        private void MoveTowardsPosition(int controlPosition, int distanceToTravel, PictureBox pcb)
+        {
+            int xDistanceToMove = Convert.ToInt32(Math.Cos(controlPosition * Math.PI / 180) * distanceToTravel);
+            int yDistanceToMove = Convert.ToInt32(Math.Sin(controlPosition * Math.PI / 180) * distanceToTravel);
+            pcb.Location = new Point(pcb.Location.X + xDistanceToMove, pcb.Location.Y + yDistanceToMove);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -108,6 +174,8 @@ namespace Zerg_Rush
             alienList.Add(alien);
             PictureBox alienPicture = new PictureBox();
             alienPicture.Click += pictureBox1_Click;
+            alienPicture.MouseDown += mouseDown;
+            alienPicture.MouseUp += mouseUp;
             alienPicture.Image = Properties.Resources.space_invader;
             alienPicture.Size = defaultalienPicture.Size;
             alienPicture.SizeMode = PictureBoxSizeMode.Zoom;
@@ -201,11 +269,66 @@ namespace Zerg_Rush
             gamephase = 1;
             button1.Visible = false;
             this.Focus();
+            this.Cursor = Cursors.Cross;
+            players player = new players();
+            playersList.Add(player);
         }
 
         private void spaceship_Click(object sender, EventArgs e)
         {
             label1.Text = Cursor.Position.X.ToString() + " " + Cursor.Position.Y.ToString();
+        }
+
+        private void formClick(object sender, EventArgs e)
+        {
+            
+        }
+        private void mouseDown(object sender, MouseEventArgs e)
+        {
+            mousePress = true;
+            if (laserShootingTimer.Enabled == false)
+            {
+                laserShoot();
+                laserShootingTimer.Start();
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (mousePress == true)
+            {
+                laserShoot();
+            }
+            else
+            {
+                laserShootingTimer.Stop();
+            }
+        }
+
+        private void laserShoot()
+        {
+            lasers laser = new lasers();
+            PictureBox laserPicture = new PictureBox();
+            players player = playersList[0];
+            laser.position = player.position;
+            laserPicture.Size = laserDefaultPicture.Size;
+            laserPicture.Image = laserDefaultPicture.Image;
+            laserPicture.MouseDown += mouseDown;
+            laserPicture.MouseUp += mouseUp;
+            rotate(laserPicture, Properties.Resources.Laser2, laser.position + 90);
+            laserPicture.SizeMode = laserDefaultPicture.SizeMode;
+            laserPicture.Location = spaceship.Location;
+            laser.damage = 1;
+            laserList.Add(laser);
+            laserPictureList.Add(laserPicture);
+            Controls.Add(laserPictureList[laserPictureList.Count - 1]);
+            MoveTowardsPosition(laser.position, 40, laserPictureList[laserPictureList.Count - 1]);
+            laserPictureList[laserPictureList.Count - 1].BringToFront();
+        }
+
+        private void mouseUp(object sender, MouseEventArgs e)
+        {
+            mousePress = false;
         }
     }
 }
